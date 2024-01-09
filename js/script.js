@@ -28,7 +28,7 @@ console.log('JS OK')
 const selectElement = document.getElementById('select');
 const inputField = document.getElementById('usernumber');
 const button = document.getElementById('button');
-
+const result = document.getElementById('result');
 
 
 
@@ -36,6 +36,9 @@ function numberRandom() {
     return Math.floor(Math.random() * 5 ) + 1;
 }
 
+function isEven(number) {
+    return number % 2 === 0;
+}
 
 
 
@@ -46,7 +49,30 @@ button.addEventListener('click', function(){
     }else{
         let numberPc = numberRandom();
         let sum = numberUser + numberPc;
-        console.log(sum)
-    }
+        console.log(sum);
+        console.log(isEven(sum));
 
+        if(isEven(sum) === true){
+            console.log('pari')
+        }else if(isEven(sum) === false){
+            console.log('dispari')
+        };
+
+        choiceUser = selectElement.options[selectElement.selectedIndex].value;
+        let risultato = '';
+        switch (choiceUser) {
+            case "pari":
+                risultato = isEven(sum) ? "hai vinto" : "hai perso";
+                break;
+            case "dispari":
+                risultato = !isEven(sum) ? "hai vinto" : "hai perso";
+                break;
+            default:
+                risultato = "Scegli pari o dispari.";
+        };
+
+        result.innerText = risultato;
+    };
+        
+    
 });
