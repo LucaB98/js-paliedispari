@@ -32,18 +32,21 @@ const button = document.getElementById('button');
 
 
 
-function numberRandom(min = 1, max = 5) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+function numberRandom() {
+    return Math.floor(Math.random() * 5 ) + 1;
 }
 
 
 
 
 button.addEventListener('click', function(){
-    const numberPc = numberRandom();
-    const numberUser = inputField.value;
-    let sum = 0;
-    sum = numberPc + numberUser;
-    console.log(sum)
+   let numberUser = parseInt(inputField.value);
+    if(isNaN(numberUser) || numberUser < 1 || numberUser > 5){
+        alert("i campi sono sbagliati, inserisci un numero da 1 a 5")
+    }else{
+        let numberPc = numberRandom();
+        let sum = numberUser + numberPc;
+        console.log(sum)
+    }
 
 });
