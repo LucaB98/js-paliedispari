@@ -13,11 +13,8 @@ function isPalindrome(word){
     for(let i = word.length - 1; i >= 0; i--)
     inverseWord += word[i];
 
-    if(inverseWord === word){
-        return true;
-    }else{
-        return false;
-    };
+    return inverseWord === word;
+   
     
 };
 
