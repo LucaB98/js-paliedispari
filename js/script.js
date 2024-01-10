@@ -32,8 +32,8 @@ const result = document.getElementById('result');
 
 
 
-function numberRandom() {
-    return Math.floor(Math.random() * 5 ) + 1;
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max + 1 - min)) + min;
 }
 
 function isEven(number) {
@@ -47,31 +47,13 @@ button.addEventListener('click', function(){
     if(isNaN(numberUser) || numberUser < 1 || numberUser > 5){
         alert("i campi sono sbagliati, inserisci un numero da 1 a 5")
     }else{
-        let numberPc = numberRandom();
+        let numberPc = getRandomNumber(1, 5);
         let sum = numberUser + numberPc;
-        console.log(sum);
-        console.log(isEven(sum));
+        
 
-        if(isEven(sum) === true){
-            console.log('pari')
-        }else if(isEven(sum) === false){
-            console.log('dispari')
-        };
-
-        choiceUser = selectElement.options[selectElement.selectedIndex].value;
-        let risultato = '';
-        switch (choiceUser) {
-            case "pari":
-                risultato = isEven(sum) ? "hai vinto" : "hai perso";
-                break;
-            case "dispari":
-                risultato = !isEven(sum) ? "hai vinto" : "hai perso";
-                break;
-            default:
-                risultato = "Scegli pari o dispari.";
-        };
-
-        result.innerText = risultato;
+        const rightChoice = isEven(sum) ?  'pari' : 'dispari';
+        const winner = selectElement.value === rightChoice ? 'User' : 'CPU';
+        result.innerText = 'Il vincitore è: ' + winner;
     };
         
     
